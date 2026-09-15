@@ -10,11 +10,12 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 add_executable(md_compositor
-  src/main.cpp
+  tests/shapes/main.cpp
 )
 
 target_include_directories(md_compositor PRIVATE
   ${CMAKE_SOURCE_DIR}/third_party
+  ${CMAKE_SOURCE_DIR}/src
 )
 
 target_compile_options(md_compositor PRIVATE -Wall -Wextra)
