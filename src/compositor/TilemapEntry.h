@@ -19,6 +19,8 @@ public:
 
     explicit TilemapEntry(uint16_t packed) : raw(packed) {}
 
+    TilemapEntry() : raw(0) {}
+
     int  tile_index()   const { return raw & 0x07FF; }
     bool flip_h()       const { return raw & 0x0800; }
     bool flip_v()       const { return raw & 0x1000; }
