@@ -9,13 +9,21 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-add_executable(md_compositor
+# --- La lib : header-only, exposée pour être consommée ailleurs ---
+add_library(md_compositor INTERFACE)
+target_include_directories(md_compositor INTERFACE
+  ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+# --- Le banc de test : consomme la lib ---
+add_executable(shapes_test
   tests/shapes/main.cpp
 )
 
-target_include_directories(md_compositor PRIVATE
+target_include_directories(shapes_test PRIVATE
   ${CMAKE_SOURCE_DIR}/third_party
-  ${CMAKE_SOURCE_DIR}/src
 )
 
-target_compile_options(md_compositor PRIVATE -Wall -Wextra)
+target_link_libraries(shapes_test PRIVATE md_compositor)
+
+target_compile_options(shapes_test PRIVATE -Wall -Wextra)
