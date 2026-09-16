@@ -28,9 +28,22 @@ Tile corner_tile = {
     0x00, 0x00, 0x00, 0x00,
 };
 
+Tile empty_tile = {
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00,
+};
+
 int main() {
     Plane plane_b = {};
     Plane plane_a = {};
+
+    TilemapEntry empty_entry(2, 2, false, false, false);
     
     TilemapEntry chequered_entry(0, 1, false, false, false);
     for (int i = 0; i < PLANE_WIDTH; ++i) {
@@ -60,7 +73,7 @@ int main() {
     Palette palette2 = { blue, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow };
 
     Screen screen = {
-        .tiles = { chequered_tile, corner_tile },
+        .tiles = { chequered_tile, corner_tile, empty_tile },
         .plane_a = plane_a,
         .plane_b = plane_b,
         .backdrop = black,
