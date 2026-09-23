@@ -30,6 +30,9 @@ struct Screen {
         if (pixel_a != 0) {
             color = palettes[entry_a.palette_line()].colors[pixel_a - 1];
         }   
-        return color;
+
+        // Palettes hold Megadrive levels (0..7): expand to 8 bits for display.
+        auto expand = [](uint8_t v) { return (uint8_t) ((v << 5) | (v << 2) | (v >> 1)); };
+        return Color{ expand(color.red), expand(color.green), expand(color.blue) };
     }
 };
